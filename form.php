@@ -101,19 +101,19 @@ function ctask_break_rep($A, $B, $V) {
   //echo fwrite($file,"Hello World. Testing2!");
   //fprintf($file,"Break replication between %s and %s", $A, $B);
   //fprintf($file,"Log on to %s", $V); // Needs to be B host
-  $_ = sprintf("<b>Break replication between %s and %s</b><br>", $A, $B);
-  $_ = $_ . sprintf("Log on to %s<br>", $V); // Needs to be B host
+  $_ = sprintf("<b>Break replication between %s and %s</b><br>", strtoupper($A), strtoupper($B));
+  $_ = $_ . sprintf("Log on to %s<br>", strtoupper($V)); // Needs to be B host
   $_ = $_ . sprintf("Select Copy Services > Remote Copy<br>");
-  $_ = $_ . sprintf("Filter for volume %s<br>", $B);
+  $_ = $_ . sprintf("Filter for volume %s<br>", strtoupper($B));
   $_ = $_ . sprintf("Right click the relationship and select Delete Relationship<br><br>");
   return $_;
 }
 
 function ctask_extend_live($B, $V, $GB) {
-  $_ = sprintf("<b>Extend V7000 volume %s</b><br>", $B);
-  $_ = $_ . sprintf("Log on to %s<br>", $V); // Needs to be B host
+  $_ = sprintf("<b>Extend V7000 volume %s</b><br>", strtoupper($B));
+  $_ = $_ . sprintf("Log on to %s<br>", strtoupper($V)); // Needs to be B host
   $_ = $_ . sprintf("Select Volumes > Create Volumes<br>");
-  $_ = $_ . sprintf("Filter for volume %s<br>", $B);
+  $_ = $_ . sprintf("Filter for volume %s<br>", strtoupper($B));
   $_ = $_ . sprintf("Right click the volume and select Expand<br>");
   $_ = $_ . sprintf("Enter %s for the 'Expand by:' value<br>", $GB);
   $_ = $_ . sprintf("Confirm the 'Final size:' value is correct<br>");
@@ -122,10 +122,10 @@ function ctask_extend_live($B, $V, $GB) {
 }
 
 function ctask_extend_DR($A, $V, $GB) {
-  $_ = sprintf("<b>Extend V7000 volume %s</b><br>", $A);
-  $_ = $_ . sprintf("Log on to %s<br>", $V);
+  $_ = sprintf("<b>Extend V7000 volume %s</b><br>", strtoupper($A));
+  $_ = $_ . sprintf("Log on to %s<br>", strtoupper($V));
   $_ = $_ . sprintf("Select Volumes > Create Volumes<br>");
-  $_ = $_ . sprintf("Filter for volume %s<br>", $A);
+  $_ = $_ . sprintf("Filter for volume %s<br>", strtoupper($A));
   $_ = $_ . sprintf("Right click the volume and select Expand<br>");
   $_ = $_ . sprintf("Enter %s for the 'Expand by:' value<br>", $GB);
   $_ = $_ . sprintf("Confirm the 'Final size:' value is correct<br>");
@@ -134,8 +134,8 @@ function ctask_extend_DR($A, $V, $GB) {
 }
 
 function ctask_create_mirror($A, $B, $VA, $VB, $CV) {
-  $_ = sprintf("<b>Create mirror relationship between %s and %s</b><br>", $A, $B);
-  $_ = $_ . sprintf("Log on to %s<br>", $VA);
+  $_ = sprintf("<b>Create mirror relationship between %s and %s</b><br>", strtoupper($A), strtoupper($B));
+  $_ = $_ . sprintf("Log on to %s<br>", strtoupper($VA));
   $_ = $_ . sprintf("Select Copy Services > Remote Copy<br>");
   $_ = $_ . sprintf("Select Actions > Create Relationship<br>");
   if ($CV == "GMCVYes") {
@@ -148,9 +148,9 @@ function ctask_create_mirror($A, $B, $VA, $VB, $CV) {
 
 function global_mirror_change_vol($A, $B, $VB) {
   $_ = sprintf("Select Global Mirror with Change Volumes and click Next<br>");
-  $_ = $_ . sprintf("Select On another system and select %s<br>", $VB);
-  $_ = $_ . sprintf("Select Master volume %s<br>", $A);
-  $_ = $_ . sprintf("Select Auxiliary volume %s<br>", $B);
+  $_ = $_ . sprintf("Select On another system and select %s<br>", strtoupper($VB));
+  $_ = $_ . sprintf("Select Master volume %s<br>", strtoupper($A));
+  $_ = $_ . sprintf("Select Auxiliary volume %s<br>", strtoupper($B));
   $_ = $_ . sprintf("Click Add then click Next<br>");
 
   return $_;
@@ -218,7 +218,7 @@ function test_input($data) {
   File system: <input type="text" name="fileSys">
   <span class="error">* <?php echo $fileSysErr;?></span>
   <br><br>
-  <input type="submit" name="submit" value="Submit">
+  <input type="submit" class="btn btn-info" value="Submit Button">
 </form>
 <div>
 </div>
